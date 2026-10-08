@@ -17,8 +17,6 @@
 
 from typing import Any, Iterable
 
-import rpm
-
 from repology.logger import Logger
 from repology.packagemaker import NameType, PackageFactory, PackageMaker
 from repology.parsers import Parser
@@ -36,6 +34,9 @@ class SrcListParser(Parser):
         self._vertags = parse_rpm_vertags(vertags)
 
     def iter_parse(self, path: str, factory: PackageFactory) -> Iterable[PackageMaker]:
+        # imported here so other parsers remain usable without rpm python bindings
+        import rpm
+
         for header in rpm.readHeaderListFromFile(path):
             with factory.begin() as pkg:
                 assert header.isSource()  # binary packages not supported yet
