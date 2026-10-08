@@ -5,3 +5,4 @@ repology.conf
 repologyapp/static/*.gz
 rules.d
 testdata/*.packages
+.clever.json
