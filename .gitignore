@@ -1,6 +1,7 @@
 __pycache__
 _state
 _parsed
+_update.lock
 repology.conf
 repologyapp/static/*.gz
 rules.d

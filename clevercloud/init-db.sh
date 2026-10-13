@@ -20,7 +20,7 @@ if [ "$(query "SELECT to_regclass('public.repositories') IS NOT NULL")" = "False
 	./repology-update.py --initdb
 fi
 
-# Fill an empty database now instead of waiting for the weekly cron; this is
+# Fill an empty database now instead of waiting for the next cron run; this is
 # retried on every deploy until a run succeeds
 if [ "$(query "SELECT NOT EXISTS (SELECT 1 FROM packages)")" = "True" ]; then
 	echo "database is empty, running initial update"
