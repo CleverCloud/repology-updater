@@ -1,8 +1,10 @@
-#!/bin/bash
+#!/bin/bash -l
 # Run every 10 minutes by clevercloud/cron.json, and once by init-db.sh to fill
 # a fresh database. The updater itself decides what to refresh: each repository
 # is only fetched once its update_period has elapsed, only parsed when the
-# fetched data changed, and only changed projects are pushed to the database
+# fetched data changed, and only changed projects are pushed to the database.
+# Crons run outside the application environment: the login shell (-l) is what
+# puts the virtualenv in PATH and exposes the addon variables
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
